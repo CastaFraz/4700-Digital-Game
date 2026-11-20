@@ -18,24 +18,31 @@ public class BookmarkPuzzle : MonoBehaviour
     // Correct order is viewed through the index of each
     // All correct -> has each array's index checked to see if correct
 
+    // CANVAS OBJECT THAT PLAYER SELECTS SHAPES IN -> Set in Inspector
     public Canvas BookmarkInteracting;
 
+    // SHAPE IMAGES THAT SHOWS SELECTED SHAPE -> Set in Inspector
     public Image Image1, Image2, Image3, Image4;
 
-    public int[] testArray = new int[4];
+    // INDEX THAT SHOWS WHAT 'POSITION' THE SHAPE IS 
+    // Index is updated based on button presses
     int index1, index2, index3, index4;
 
+    // ARRAY OF SPRITES -> Set in Inspector
+    // This holds the 4 shapes that will be set to the shape image depending on the index
     public Sprite[] shapeArray = new Sprite[4];
 
     //int shapes, rows;
     //public int[,] tArray;
-
+    //public int[] testArray = new int[4];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Hide sub-canvas at start
         BookmarkInteracting.enabled = false;
 
+        // Set all indexes 0 (so shapes start as squares)
         index1 = 0;
         index2 = 0;
         index3 = 0;
@@ -50,11 +57,14 @@ public class BookmarkPuzzle : MonoBehaviour
         
     }
 
+    // Gets called when small bookmark image gets clicked and summons interactable bookmark
     public void bookmarkClicked() 
     {
         BookmarkInteracting.enabled = true;
     }
 
+    // 'Clicked#' functions called by the buttons depending on which 'row' they're in
+    // Seperated so information can be passed to ShapeClicked function
     public void Clicked1(int dir)
     {
         Shape1Clicked(1, dir);
@@ -75,11 +85,13 @@ public class BookmarkPuzzle : MonoBehaviour
         Shape1Clicked(4, dir);
     }
 
+    // Called from Clicked# functions, taking which row and which direction button is pressed
     public void Shape1Clicked(int s, int dir)
     {
-        // s is which shape is being selected
+        // Checks which row is being changed
         switch(s)
         {
+            // If row 1
             case 1:
                 if (dir == 1)
                 {
@@ -93,6 +105,7 @@ public class BookmarkPuzzle : MonoBehaviour
                 }
                 Image1.GetComponent<Image>().sprite = shapeArray[index1];
                 break;
+            // If row 2
             case 2:
                 if (dir == 1)
                 {
@@ -106,6 +119,7 @@ public class BookmarkPuzzle : MonoBehaviour
                 }
                 Image2.GetComponent<Image>().sprite = shapeArray[index2];
                 break;
+            // If row 3
             case 3:
                 if (dir == 1)
                 {
@@ -119,6 +133,7 @@ public class BookmarkPuzzle : MonoBehaviour
                 }
                 Image3.GetComponent<Image>().sprite = shapeArray[index3];
                 break;
+            // If row 4
             case 4:
                 if (dir == 1)
                 {
@@ -140,10 +155,10 @@ public class BookmarkPuzzle : MonoBehaviour
     public void testShapes(int int1, int int2, int int3, int int4)
     {
         // Tests the index numbers to see if they match up
-        // int1 == 2
-        // int2 == 1
-        // int3 == 3
-        // int4 == 0
+        // int1 == 2 (Star)
+        // int2 == 1 (Circle)
+        // int3 == 3 (Triangle)
+        // int4 == 0 (Square)
 
         if (int1 == 2 && int2 == 1 && int3 == 3 && int4 == 0)
         {
