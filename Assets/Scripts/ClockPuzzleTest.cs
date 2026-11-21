@@ -31,8 +31,17 @@ public class ClockPuzzleTest : MonoBehaviour
     // BOOLEAN VALUES FOR TESTING IF HANDS ARE CORRECT
     bool minTF, hrTF;
 
+    public bool isSolved;
+    public GameObject bird;
+
+    GameObject pm;
+    public PuzzleManager puzzlemanager;
+
     // CALLED WHEN SCENE GETS LOADED IN
     private void Awake() {
+
+        pm = GameObject.FindWithTag("PuzzleManager");
+        puzzlemanager = pm.GetComponent<PuzzleManager>();
 
         //Debug.Log(message: "Start");
 
@@ -51,6 +60,23 @@ public class ClockPuzzleTest : MonoBehaviour
 
         minTF = false;
         hrTF = false;
+
+        if (puzzlemanager.PuzzleStatus[3] == 1) {
+            isSolved = true;
+        }
+        else { isSolved = false; }
+
+        //Debug.Log(puzzlemanager.PuzzleStatus[3].ToString());
+
+        if (isSolved) {
+            bird.SetActive(true);
+        }
+        else {
+            bird.SetActive(false);
+        }
+
+        
+        
 
     }
 
@@ -160,9 +186,17 @@ public class ClockPuzzleTest : MonoBehaviour
             Debug.Log(message: "PUZZLE CORRECT");
 
             // SEND OUT TRIGGER HERE
+            ClockSolved();
         }
 
-        
+    }
+
+    public void ClockSolved() 
+    {
+        isSolved = true;
+        bird.SetActive(true);
+
+        puzzlemanager.TestDone();
     }
 
 }
