@@ -75,9 +75,6 @@ public class ClockPuzzleTest : MonoBehaviour
             bird.SetActive(false);
         }
 
-        
-        
-
     }
 
     private void Update() {
@@ -196,7 +193,7 @@ public class ClockPuzzleTest : MonoBehaviour
         isSolved = true;
         bird.SetActive(true);
 
-        puzzlemanager.TestDone();
+        puzzlemanager.ClockDone();
     }
 
 }

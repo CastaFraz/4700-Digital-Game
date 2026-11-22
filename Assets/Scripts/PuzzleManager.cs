@@ -43,6 +43,7 @@ public class PuzzleManager : MonoBehaviour
         
     }
 
+    // When puzzle is DONE
     public void PuzzleCompleted(int PuzzleNum) 
     {
         if (PuzzleIndex < 10) {
@@ -54,22 +55,55 @@ public class PuzzleManager : MonoBehaviour
         switch(PuzzleNum)
         {
             case 1: // Ghost Button Awaken
+                GhostAwaken();
                 break;
             case 2:
+                BookmarkDone();
                 break;
             case 3:
+                PictureArrange();
+                break;
+            case 4:
+                ClockDone();
+                break;
+            case 5:
+                BirdMap();
                 break;
         }
     }
 
     public void GhostAwaken()
     {
-
+        // Not sent from digital game, but from physical tech
+        // Canvas overlay / background toggled off
     }
 
-    public void TestDone() 
+    public void BookmarkDone()
     {
-        Debug.Log("Done");
+        Debug.Log("Bookmark Done");
+        PuzzleStatus[1] = 1;
+
+        // Outcome trigger
+    }
+
+    public void PictureArrange()
+    {
+        // Not sent from digital game, but from physical tech
+
+        // Sprites of pictures set to correct sprites
+            // Take from sprite change branch
+    }
+
+    public void ClockDone() 
+    {
+        Debug.Log("Clock Done");
         PuzzleStatus[3] = 1;
+
+        // Outcome trigger
+    }
+
+    public void BirdMap()
+    {
+        // Not sent from digital game, but from physical tech
     }
 }

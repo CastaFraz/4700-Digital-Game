@@ -11,6 +11,9 @@ using System;
 public class BookmarkPuzzle : MonoBehaviour
 {
 
+    GameObject pm;
+    public PuzzleManager puzzlemanager;
+
     // Image1, Image2, etc, linked to the visual of the shape in the bookmark interactable
     // Images image's value is linked to their image component
     // image component is changed depending on the array corresponding
@@ -36,9 +39,20 @@ public class BookmarkPuzzle : MonoBehaviour
     //public int[,] tArray;
     //public int[] testArray = new int[4];
 
+    bool isSolved;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        pm = GameObject.FindWithTag("PuzzleManager");
+        puzzlemanager = pm.GetComponent<PuzzleManager>();
+
+        if (puzzlemanager.PuzzleStatus[1] == 1) {
+            isSolved = true;
+        }
+        else { isSolved = false; }
+
         // Hide sub-canvas at start
         BookmarkInteracting.enabled = false;
 
@@ -163,6 +177,9 @@ public class BookmarkPuzzle : MonoBehaviour
         if (int1 == 2 && int2 == 1 && int3 == 3 && int4 == 0)
         {
             Debug.Log("Puzzle correct");
+            isSolved = true;
+
+            puzzlemanager.BookmarkDone();
         }
     }
 }
