@@ -26,6 +26,15 @@ public class PuzzleManager : MonoBehaviour
 
     public int PuzzleIndex;
 
+    // Room changing stuff ---------------------------------------
+    //public GameObject[] pictures = new GameObject[4];
+    public GameObject[] pictures = new GameObject[4];
+
+    public Sprite[] picNoUV = new Sprite[4];
+    public Sprite[] picUV = new Sprite[4];
+
+    public bool isState2;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +43,11 @@ public class PuzzleManager : MonoBehaviour
         }
 
         PuzzleIndex = 0;
+
+        isState2 = false;
+        for (int i = 0; i < 4; i++) {
+               pictures[i].GetComponent<SpriteRenderer>().sprite = picNoUV[i];
+            }
         
     }
 
@@ -61,6 +75,8 @@ public class PuzzleManager : MonoBehaviour
                 BookmarkDone();
                 break;
             case 3:
+                // isState2 = true
+                    // have isState2 set to false when UV lights turn off
                 PictureArrange();
                 break;
             case 4:
@@ -92,6 +108,24 @@ public class PuzzleManager : MonoBehaviour
 
         // Sprites of pictures set to correct sprites
             // Take from sprite change branch
+
+        Debug.Log("Button Hit");
+
+        isState2 = !isState2;
+
+        if (isState2) {
+            Debug.Log("State2");
+            for (int i = 0; i < 4; i++) {
+                pictures[i].GetComponent<SpriteRenderer>().sprite = picUV[i];
+            }
+
+        }
+        else {
+            Debug.Log("State1");
+            for (int i = 0; i < 4; i++) {
+                pictures[i].GetComponent<SpriteRenderer>().sprite = picNoUV[i];
+            }
+        }
     }
 
     public void ClockDone() 
