@@ -88,6 +88,8 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
+    // THESE FUNCTIONS ARE CALLED WHEN PUZZLE IS FINISHED
+    // Finished either digital or physical depending on the puzzle
     public void GhostAwaken()
     {
         // Not sent from digital game, but from physical tech
@@ -100,17 +102,20 @@ public class PuzzleManager : MonoBehaviour
         PuzzleStatus[1] = 1;
 
         // Outcome trigger
+        // Physical call to show the paper (?)
     }
 
     public void PictureArrange()
     {
         // Not sent from digital game, but from physical tech
+        // Physical signal in triggers this
 
         // Sprites of pictures set to correct sprites
             // Take from sprite change branch
 
         Debug.Log("Button Hit");
 
+        // This may need to be commented out depending on if function gets double called
         isState2 = !isState2;
 
         if (isState2) {
@@ -126,6 +131,8 @@ public class PuzzleManager : MonoBehaviour
                 pictures[i].GetComponent<SpriteRenderer>().sprite = picNoUV[i];
             }
         }
+
+        // Trigger for UV lighting
     }
 
     public void ClockDone() 
@@ -134,6 +141,7 @@ public class PuzzleManager : MonoBehaviour
         PuzzleStatus[3] = 1;
 
         // Outcome trigger
+        // Physical clock time update + Bird call
     }
 
     public void BirdMap()
